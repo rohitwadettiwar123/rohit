@@ -1,0 +1,68 @@
+OBJECTIVE/EXPECTED LEARNING OUTCOME:
+
+Understanding of basic graphics programming concepts, such as drawing shapes and filling colors.
+
+Proficiency in using graphics libraries or APIs to manipulate graphical elements.
+
+Ability to translate conceptual designs into functional graphical applications.
+
+Familiarity with coordinate systems and how they relate to drawing shapes on the screen.
+
+Improved problem-solving skills through the process of developing and debugging the application.
+
+
+Summary: Graphics Functions in C
+To create applications using graphics functions in C, you need to understand both theory and practical techniques:
+
+Graphics Libraries: Choose a suitable library or API (like OpenGL, DirectX, SDL, or SFML) to draw and render graphics.
+
+Coordinate Systems: Learn the Cartesian coordinate system used in graphics, where each pixel has a specific coordinate.
+
+Drawing Shapes: Understand how to draw shapes (like circles) by calculating points using center and radius.
+
+Color Representation: Use color models like RGB or HSV, represented by numerical values.
+
+Rendering Pipeline: Know how shapes and colors go through stages like vertex processing and shading to appear on screen.
+
+API Functions: Learn the graphics functions (like circle(), setcolor(), floodfill(), etc.) to draw and fill shapes.
+
+Performance Optimization: Apply methods to make graphics faster, like batch rendering and reducing redundant tasks.
+
+Error Handling: Understand how to manage errors and exceptions in graphics programs.
+
+
+Practical 7 code:-
+
+#include <graphics.h>
+#include <conio.h>
+
+void drawHexagon(int x, int y, int size) {
+    int hexagon[14];  // Array to hold coordinates of hexagon vertices
+
+    // Define the six points of the hexagon
+    hexagon[0] = x;                hexagon[1] = y - size;  // Top
+    hexagon[2] = x + size;         hexagon[3] = y - size/2; // Top-right
+    hexagon[4] = x + size;         hexagon[5] = y + size/2; // Bottom-right
+    hexagon[6] = x;                hexagon[7] = y + size;  // Bottom
+    hexagon[8] = x - size;         hexagon[9] = y + size/2; // Bottom-left
+    hexagon[10] = x - size;        hexagon[11] = y - size/2; // Top-left
+    hexagon[12] = x;               hexagon[13] = y - size; // Closing point
+
+    // Draw hexagon outline
+    drawpoly(7, hexagon);
+
+    // Fill the hexagon with color
+    setfillstyle(SOLID_FILL, BLUE);
+    fillpoly(7, hexagon);
+}
+
+int main() {
+    int gd = DETECT, gm;
+    initgraph(&gd, &gm, "C:\\Turboc3\\BGI"); // Initialize graphics mode
+
+    drawHexagon(300, 250, 100); // Draw a hexagon at (300,250) with size 100
+
+    getch();  // Wait for user input
+    closegraph();  // Close graphics mode
+    return 0;
+}
